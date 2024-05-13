@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>工具箱 - 搬运不流氓的常用网站和软件</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- MDB Material Design for Bootstrap (MDB) is a powerful Material Design UI KIT for most popular HTML, CSS, and JS framework - Bootstrap. https://mdbootstrap.com/ -->
+    <link rel="stylesheet" href="css/mdb.min.css" />
+    <!--script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js"></script!-->
+
+    <!--cdn失效时动态切换cdn功能    本想使用https://github.com/EtherDream/freecdn/  但有问题
+参考 https://segmentfault.com/q/1010000041149228?utm_source=sf-homepage 来实现
+使用document.head.appendChild或body.appendChild，脚本都不会执行，原因未知，只能使用document.write    !-->
+    <script>
+      // cdn列表，最后使用本地
+      mdb_list = [
+        {
+          css: "https://cdn.bootcdn.net/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.css",
+          js: "https://cdn.bootcdn.net/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.js",
+        },
+        {
+          css: "https://cdn.jsdelivr.net/npm/mdb-ui-kit@3.11.0/css/mdb.min.css",
+          js: "https://cdn.jsdelivr.net/npm/mdb-ui-kit@3.11.0/js/mdb.min.js",
+        },
+        { css: "css/mdb.min.css", js: "js/mdb.min.js" },
+      ];
+
+      function loadMdb() {
+        var mdb_src = mdb_list.shift();
+        document.write('<link rel="stylesheet" href="' + mdb_src.css + '">');
+        document.write(
+          '<script src="' + mdb_src.js + '" onerror="loadMdb();"><\/script>'
+        );
+      }
+    </script>
+    <script src="js/mdb.min.js" onerror="loadMdb();"></script>
+
+    <style type="text/css">
+      body {
+        font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑,
+          STHeiti, MingLiu;
+      }
+
+      .mysearchbox {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -ms-flex-align: center;
+        align-items: center;
+        font-family: "Poppins", sans-serif;
+        background-size: cover;
+        background-position: center center;
+        padding: 15px;
+      }
+
+      .mysearchbox form {
+        width: 100%;
+        max-width: 700px;
+      }
+
+      .mysearchbox form legend {
+        font-size: 20px;
+        color: #888888;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .mysearchbox form .inner-form {
+        width: 100%;
+        margin-bottom: 0px;
+      }
+
+      .mysearchbox form .inner-form .input-field {
+        height: 45px;
+        width: 100%;
+        position: relative;
+      }
+
+      .mysearchbox form .inner-form .input-field input {
+        height: 100%;
+        width: 100%;
+        background: transparent;
+        border: 0;
+        background: #fff;
+        display: block;
+        width: 100%;
+        padding: 10px 32px 10px 50px;
+        font-size: 18px;
+        color: #666;
+        border-radius: 34px;
+      }
+
+      .mysearchbox form .inner-form .input-field input.placeholder {
+        color: #ccc;
+        font-size: 18px;
+      }
+
+      .mysearchbox form .inner-form .input-field input:-moz-placeholder {
+        color: #ccc;
+        font-size: 18px;
+      }
+
+      .mysearchbox
+        form
+        .inner-form
+        .input-field
+        input::-webkit-input-placeholder {
+        color: #ccc;
+        font-size: 18px;
+      }
+
+      .mysearchbox form .inner-form .input-field input:hover,
+      .mysearchbox form .inner-form .input-field input:focus {
+        box-shadow: none;
+        outline: 0;
+      }
+
+      .mysearchbox form .inner-form .input-field .btn-search {
+        width: 60px;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        position: absolute;
+        left: 0;
+        height: 100%;
+        background: transparent;
+        border: 0;
+        padding: 0;
+        display: flex;
+        -ms-flex-pack: center;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .mysearchbox form .inner-form .input-field .btn-search svg {
+        fill: #ccc;
+        width: 30px;
+        height: 30px;
+        transition: all 0.2s ease-out, color 0.2s ease-out;
+      }
+
+      .nav-link.active {
+        color: rgba(0, 0, 0, 0.9);
+        font-weight: bold;
+      }
+
+      /* 让模态框显示 */
+      .modal {
+        display: block;
+        margin-top: 158px;
+      }
+
+      /* 模态框显示时后面的全屏效果 */
+      .fullscreen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 100;
+      }
+    </style>
+  </head>
+  <body style="overflow-y: scroll; background: #eeeeee">
+    <div id="app">
+      <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white fixed-top">
+          <div class="container-fluid">
+            <div class="col-8">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    href="#"
+                    :class="{ active: page_name === 'web' }"
+                    @click="show_page('web')"
+                    >网站</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    href="#"
+                    :class="{ active: page_name === 'soft' }"
+                    @click="show_page('soft')"
+                    >软件</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    href="#"
+                    :class="{ active: page_name === 'skill' }"
+                    @click="show_page('skill')"
+                    >经验</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="col-4 text-end">
+              <button
+                type="button"
+                class="btn btn-danger btn-rounded"
+                @click="m_about=true"
+              >
+                关于本站
+              </button>
+              <!--button type="button" class="btn btn-danger btn-rounded" @click="show_page('about')">关于本站</button-->
+            </div>
+          </div>
+        </nav>
+        <!-- Navbar -->
+      </header>
+
+      <div class="container" style="margin-top: 58px">
+        <!-- Modal about-->
+        <div v-if="m_about" style="background-color: dark" class="fullscreen">
+          <div class="modal" @click.self="m_about=false">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">关于本站</h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    @click="m_about=false"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  出于个人兴趣做的网站，整理了自己收集的一些有用的网站和软件，收录标准是无插件，不流氓，不付费，好用。<br />
+
+                  如果你知道其他满足标准的好网站或软件可以推荐给我:
+                  <a href="mailto:ruikocon@qq.com">ruikocon@qq.com</a><br />
+                  <br />
+                  框架/库<br />
+                  Vue.js&nbsp;&nbsp;&nbsp;
+                  <a href="https://cn.vuejs.org">https://cn.vuejs.org</a><br />
+                  <!--Bootstrap5&nbsp;&nbsp;&nbsp; <a href="https://getbootstrap.com">https://getbootstrap.com</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://v5.bootcss.com">https://v5.bootcss.com</a><br!-->
+                  MDBootstrap5&nbsp;&nbsp;&nbsp;
+                  <a href="https://mdbootstrap.com">https://mdbootstrap.com</a
+                  ><br />
+                  Vanilla Back To Top&nbsp;&nbsp;&nbsp;
+                  <a href="https://github.com/vfeskov/vanilla-back-to-top"
+                    >https://github.com/vfeskov/vanilla-back-to-top</a
+                  ><br />
+                  CDN<br />
+                  <a href="https://cdnjs.com">https://cdnjs.com</a><br />
+                  <a href="https://www.bootcdn.cn/">https://www.bootcdn.cn/</a
+                  ><br />
+                  <a href="https://www.jsdelivr.com">https://www.jsdelivr.com</a
+                  ><br />
+                  <br />
+                  <div class="text-center container" style="width: 400px">
+                    <!-- 图片放在了免费图床 https://imgchr.com/ !-->
+                    <!--a href="https://imgchr.com/i/Dlss9e"><img src="https://s3.ax1x.com/2020/11/21/Dlss9e.md.jpg" alt="Dlss9e.jpg" border="0" class="img-thumbnail" /></a!-->
+                  </div>
+                  <br />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- page of web -->
+        <div v-if="page_name==='web'">
+          <br />
+          <!-- 搜索功能 -->
+          <div class="mysearchbox">
+            <form>
+              <!--legend>请输入软件名称</legend!-->
+              <div class="inner-form">
+                <div class="input-field">
+                  <!--button class="btn-search" v-on:click="search_soft('wepe')" type="button"-->
+                  <button class="btn-search" disabled="disabled">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                      ></path>
+                    </svg>
+                  </button>
+                  <input
+                    v-model="search_web"
+                    placeholder="输入要查找的网站名称"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+          <hr />
+
+          <!--显示全部网站 -->
+          <button
+            v-on:click="select_web('all')"
+            type="button"
+            class="btn btn-rounded"
+            v-bind:class="{'btn-outline-secondary': select_web_type != 'all', 'btn-secondary': select_web_type == 'all' }"
+            style="margin: 5px"
+          >
+            全部</button
+          >&nbsp;
+          <!--按类别显示 -->
+          <button
+            v-for="type in web_types"
+            v-on:click="select_web(type.name)"
+            type="button"
+            class="btn btn-rounded"
+            v-bind:class="{'btn-outline-info': select_web_type != type.name, 'btn-info': select_web_type == type.name }"
+            style="margin: 5px"
+          >
+            {{type.title}}
+          </button>
+          <!--按字母排序 -->
+          <!--button v-on:click="sort_web" type="button" class="btn btn-rounded btn-warning" style="margin:5px;">{{b_sort_text_web}}</button-->
+          <br /><br />
+
+          <div v-if="web_list.length > 0" class="row">
+            <div
+              v-for="web in web_list"
+              class="col-12 col-xl-6"
+              style="margin: 10px 0px"
+            >
+              <!--  col-xl-6 !-->
+              <div class="card shadow bg-white">
+                <div class="card-header">
+                  <div class="row">
+                    <div class="col-9">
+                      <h4>{{ web.name }}</h4>
+                    </div>
+                    <div class="col-3 text-end">
+                      <h5>
+                        <span
+                          class="badge"
+                          :class="'bg-' + getWebTypeColor(web.type)"
+                          >{{ getWebType(web.type) }}</span
+                        >
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <span v-if="web.intro"
+                    ><span v-html="web.intro"></span><br /><br
+                  /></span>
+                  <span v-for="url in web.webs">
+                    <a v-bind:href="url.url">{{url.url}}</a>
+                    <span v-if="url.tip"
+                      >&nbsp;&nbsp;&nbsp;&nbsp;{{url.tip}}</span
+                    >
+                    <br />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div v-else class="row">
+            <div class="col-12 col-xl-6" style="margin: 10px 0px">
+              <div class="card"><div class="card-body">暂无数据</div></div>
+            </div>
+          </div>
+        </div>
+        <!--END page of soft -->
+
+        <!-- page of soft -->
+        <div v-else-if="page_name==='soft'">
+          <br />
+          <!-- 搜索功能 -->
+          <div class="mysearchbox">
+            <form>
+              <!--legend>请输入软件名称</legend!-->
+              <div class="inner-form">
+                <div class="input-field">
+                  <!--button class="btn-search" v-on:click="search_soft('wepe')" type="button"-->
+                  <button class="btn-search" disabled="disabled">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                      ></path>
+                    </svg>
+                  </button>
+                  <input
+                    v-model="search_soft"
+                    placeholder="输入要查找的软件名称"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+          <hr />
+
+          <!--显示全部软件 -->
+          <button
+            v-on:click="select_soft('all')"
+            type="button"
+            class="btn btn-rounded"
+            v-bind:class="{'btn-outline-primary': select_soft_type != 'all', 'btn-primary': select_soft_type == 'all' }"
+            style="margin: 5px"
+          >
+            全部</button
+          >&nbsp;
+          <!--按类别显示 -->
+          <button
+            v-for="type in soft_types"
+            v-on:click="select_soft(type.name)"
+            type="button"
+            class="btn btn-rounded"
+            v-bind:class="{'btn-outline-success': select_soft_type != type.name, 'btn-success': select_soft_type == type.name }"
+            style="margin: 5px"
+          >
+            {{type.title}}
+          </button>
+          <!--按字母排序 -->
+          <button
+            v-on:click="sort"
+            type="button"
+            class="btn btn-rounded btn-warning"
+            style="margin: 5px"
+          >
+            {{b_sort_text}}
+          </button>
+          <br /><br />
+
+          <div v-if="soft_list.length > 0" class="row">
+            <div
+              v-for="tool in soft_list"
+              class="col-12 col-xl-6"
+              style="margin: 10px 0px"
+            >
+              <!--  col-xl-6 !-->
+              <div class="card shadow bg-white">
+                <div class="card-header">
+                  <div class="row">
+                    <div class="col-9">
+                      <h4>{{ tool.name }}</h4>
+                    </div>
+                    <div class="col-3 text-end">
+                      <h5>
+                        <span
+                          class="badge"
+                          :class="'bg-' + getSoftTypeColor(tool.type)"
+                          >{{ getSoftType(tool.type) }}</span
+                        >
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <span v-if="tool.intro"
+                    ><span v-html="tool.intro"></span><br /><br
+                  /></span>
+                  <span v-for="web in tool.webs">
+                    <span v-if="web.tip"
+                      ><span class="badge rounded-pill bg-primary"
+                        >{{web.tip}}</span
+                      >&nbsp;&nbsp;</span
+                    >
+                    <!--span v-else><span class="badge rounded-pill bg-primary">下载</span>&nbsp;</span!-->
+                    <a v-bind:href="web.url">{{web.url}}</a>
+                    <br />
+                  </span>
+                  <span v-if="tool.source"
+                    ><a v-bind:href="tool.source">{{tool.source}}</a
+                    >&nbsp;&nbsp;&nbsp;<span
+                      class="badge rounded-pill bg-success"
+                      >源码</span
+                    ><br
+                  /></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div v-else class="row">
+            <div class="col-12 col-xl-6" style="margin: 10px 0px">
+              <div class="card"><div class="card-body">暂无数据</div></div>
+            </div>
+          </div>
+        </div>
+        <!--END  page of soft -->
+
+        <!-- page of skill -->
+        <div v-else-if="page_name==='skill'">
+          <br />
+          <!-- 搜索功能 -->
+          <div class="mysearchbox">
+            <form>
+              <!--legend>请输入软件名称</legend!-->
+              <div class="inner-form">
+                <div class="input-field">
+                  <!--button class="btn-search" v-on:click="search_soft('wepe')" type="button"-->
+                  <button class="btn-search" disabled="disabled">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                      ></path>
+                    </svg>
+                  </button>
+                  <input
+                    v-model="search_skill"
+                    placeholder="输入要查找的相关内容"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+          <hr />
+
+          <!--显示全部经验 -->
+          <button
+            v-on:click="select_skill('all')"
+            type="button"
+            class="btn btn-rounded"
+            v-bind:class="{'btn-outline-warning': select_skill_type != 'all', 'btn-warning': select_skill_type == 'all' }"
+            style="margin: 5px"
+          >
+            全部</button
+          >&nbsp;
+          <!--按类别显示 -->
+          <button
+            v-for="type in skill_types"
+            v-on:click="select_skill(type.name)"
+            type="button"
+            class="btn btn-rounded"
+            v-bind:class="{'btn-outline-dark': select_skill_type != type.name, 'btn-dark': select_skill_type == type.name }"
+            style="margin: 5px"
+          >
+            {{type.title}}
+          </button>
+          <br /><br />
+
+          <div v-if="skill_list.length > 0" class="row">
+            <div
+              v-for="skill in skill_list"
+              class="col-12"
+              style="margin: 10px 0px"
+            >
+              <!--  col-xl-6 !-->
+              <div class="card shadow bg-white">
+                <div class="card-header">
+                  <div class="row">
+                    <div class="col-9">
+                      <h4>{{ skill.name }}</h4>
+                    </div>
+                    <div class="col-3 text-end">
+                      <h5>
+                        <span
+                          class="badge"
+                          :class="'bg-' + getSkillTypeColor(skill.type)"
+                          >{{ getSkillType(skill.type) }}</span
+                        >
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <!-- 参考 https://www.jb51.net/article/172945.htm  在v-html同级元素之中绑定事件 !-->
+                  <span
+                    v-html="skill.content"
+                    @click="goto_item($event)"
+                  ></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div v-else class="row">
+            <div class="col-12 col-xl-6" style="margin: 10px 0px">
+              <div class="card"><div class="card-body">暂无数据</div></div>
+            </div>
+          </div>
+        </div>
+        <!--END  page of skill -->
+
+        <br />
+
+        <hr />
+
+        <div class="row">
+          <div class="col-6">
+            <!-- 免费计数器 https://count.skyw18.com/count.php  !-->
+            访问人数：<a href="https://count.skyw18.com" target="_blank"
+              ><img
+                src="https://count.skyw18.com/count.php?id=4&style=1&bg=ffffff"
+                alt="免费计数器"
+                style="border: 0px"
+            /></a>
+          </div>
+          <div class="col-6 text-end">
+            <span
+              >Designed By <a href="mailto:ruikocon@qq.com">RuikoCon</a></span
+            >
+          </div>
+        </div>
+        <!----end of foot row-->
+
+        <br />
+      </div>
+      <!--  END of container-->
+    </div>
+    <!--- END of app!-->
+
+    <script>
+      // 开发用 vue.global.js  发布用 vue.global.prod.min.js
+      vue_list = [
+        "https://cdn.bootcdn.net/ajax/libs/vue/3.2.31/vue.global.prod.min.js",
+        "https://cdn.jsdelivr.net/npm/vue@3.2.31/dist/vue.global.prod.js",
+        "js/vue.global.prod.min.js",
+      ];
+
+      function loadVue() {
+        var vue_src = vue_list.shift();
+        document.write(
+          '<script src="' + vue_src + '" onerror="loadVue();"><\/script>'
+        );
+      }
+    </script>
+    <script src="js/vue.global.prod.min.js" onerror="loadVue();"></script>
+
+    <script>
+      top_list = ["js/vanilla-back-to-top.min.js"];
+
+      function loadTop() {
+        var top_src = top_list.shift();
+        document.write(
+          '<script src="' + top_src + '" onerror="loadTop();"><\/script>'
+        );
+      }
+    </script>
+    <!--vanilla-back-to-top !-->
+    <script src="js/vanilla-back-to-top.min.js" onerror="loadTop();"></script>
+
+    <script type="text/javascript">
+      addBackToTop();
+      //经验类别
+      var skill_types = new Array();
+      skill_types.push({
+        name: "sys",
+        title: "系统安装",
+        intro: "",
+        color: "primary",
+      });
+      skill_types.push({
+        name: "study",
+        title: "读书学习",
+        intro: "",
+        color: "secondary",
+      });
+      skill_types.push({
+        name: "resource",
+        title: "资源获取",
+        intro: "",
+        color: "success",
+      });
+
+      //经验列表
+      var skill_list = new Array();
+      skill_list.push({
+        name: "系统安装",
+        type: "sys",
+        content:
+          '<a type="button" data-page="soft" data-type="sys" data-name="wepe" href="#">Wepe制作启动u盘</a><br>\
+  <a type="button" data-page="soft" data-type="sys" data-name="win" href="#"">下载安装镜像</a><br>\
+              <a href="https://jingyan.baidu.com/article/358570f6a827e9ce4624fc5d.html">OneDrive如何卸载或关闭</a><br>\
+Win10 consumer_editions(消费者版)包含：Home(家庭版); Education(教育版) ; Professional(专业版)；<br>\
+Win10 business_editions(商业版)包含：Education(教育版); Enterprise (企业版); Professional(专业版); 专业工作站版<br>其中<a href="https://www.sohu.com/a/372270241_120096855">专业工作站比企业版性能更强</a>\
+<!--span data-bs-toggle="popover" data-bs-content="Win10 consumer_editions(消费者版)包含：Home(家庭版); Education(教育版) ; Professional(专业版)；Win10 business_editions(商业版)包含：Education(教育版); Enterprise (企业版); Professional(专业版); 专业工作站版；其中专业工作站比企业版性能更强">Click to toggle popover</span!-->\
+    <div class="alert alert-primary" role="alert">\
+windows激活办法：<br>\
+    首先确保电脑网络通畅（不需要梯子）<br>\
+    首先以管理员的方式打开cmd输入：slmgr /ipk 序列号（见后面说明）<br>\
+    输入：slmgr /skms kms.03k.org    (服务器也可以换成kms.digiboy.ir)<br>\
+    输入：slmgr /ato 即可激活成功<br>\
+    查看激活时效输入：slmgr /xpr<br>\
+    各版本windows序列号，也可以直接使用序列号激活：<br>\
+    Windows10/11家庭版 TX9XD-98N7V-6WMQ6-BX7FG-H8Q99<br>\
+Windows10/11专业版  W269N-WFGWX-YVC9B-4J6C9-T83GX<br>\
+Windows10/11企业版 NPPR9-FWDCX-D2C8J-H872K-2YT43<br>\
+Windows10/11教育版  YNMGQ-8RYV3-4PGQ3-C8XTP-7CFBY<br>\
+windows10企业版ltsc M7XTQ-FN8P6-TTKYV-9D4CC-J462D<br>\
+MBQRK-FNDW8-B7GF4-V9PCW-6MV77<br>\
+G76DK-34N4B-RRFK3-HWP26-XQCRH<br>\
+</div>\
+如果担心安全也可以去淘宝买几块钱的激活码',
+      });
+
+      skill_list.push({
+        name: "Win10各版本区别",
+        type: "sys",
+        content:
+          '这个链接里有个表<a href="https://tencomputer.com/compare-windows-10-home-pro-enterprise/">Compare Windows 10 Home & Pro & Enterprise</a><br>\
+  简单说来就是，家庭版内存最高只支持128G(64位)或4G(32位)，专业版和企业版都支持512G(64位)或4G(32位)，家庭版的远程桌面有阉割，除此之外，专业版和企业版都多出了不少功能，但这些功能一般用不到，所以一般而言专业版即可。  ',
+      });
+
+      skill_list.push({
+        name: "如何关掉Windows10自动更新",
+        type: "sys",
+        content:
+          '<a href="https://baijiahao.baidu.com/s?id=1732432888882246429&wfr=spider&for=pc&searchword=win10%20自动更新">四大步骤，教你彻底关闭Win10自动更新</a>',
+      });
+      skill_list.push({
+        name: "如何将相机设为桌面快捷方式",
+        type: "sys",
+        content:
+          "方法1，可以直接拖动到桌面。如果不行则使用方法2：右键选择“新建->桌面快捷方式”，输入microsoft.windows.camera:",
+      });
+
+      skill_list.push({
+        name: "白嫖知网",
+        type: "study",
+        content:
+          '<a href="https://www.bilibili.com/video/BV1BY411g79F">白嫖知网论文，免费论文查重</a><br>\
+    <a href="https://www.bilibili.com/video/BV1Li4y1y7jt">手把手教你薅知网羊毛</a>',
+      });
+
+      skill_list.push({
+        name: "Rutracker使用技巧",
+        type: "resource",
+        content:
+          'rutracker需注册登录才能搜索，可以使用<a href="https://yandex.com">Yandex</a> 或 <a href="https://cn.bing.com/">必应</a> 搜索想要内容（百度搜不到），再加rutracker，如：<br>\
+elder ring rutracker<br>即可找到rutracker上艾尔登法环的游戏下载。',
+      });
+
+      skill_list.push({
+        name: "无需登录google下载apk",
+        type: "resource",
+        content:
+          '<a href="https://apkcombo.com/downloader">apkcombo</a><br><a href="https://apps.evozi.com/apk-downloader/">evozi</a>',
+      });
+
+      skill_list.push({
+        name: "Win11系统如何跳过联网步骤",
+        type: "sys",
+        content: "shift+F10，会弹出cmd命令提示符框，然后输入：OOBE\\BYPASSNRO",
+      });
+
+      skill_list.push({
+        name: "安装Win11出现问题",
+        type: "sys",
+        content:
+          "提示error 1962:no operating system found，分区时选择mbr格式，启动时选择Legacy即可。<br>     如果分区时选择guid（gpt）则启动时选UEFI，但老式机器上不一定好使",
+      });
+
+      //网站类别
+      var web_types = new Array();
+      web_types.push({
+        name: "soft",
+        title: "软件资源",
+        intro: "",
+        color: "primary",
+      });
+      web_types.push({
+        name: "mirror",
+        title: "常用镜像",
+        intro: "",
+        color: "secondary",
+      });
+      web_types.push({
+        name: "collect",
+        title: "聚合网站",
+        intro: "",
+        color: "success",
+      });
+      web_types.push({
+        name: "book",
+        title: "学习资源",
+        intro: "",
+        color: "danger",
+      });
+      web_types.push({
+        name: "media",
+        title: "影音资源",
+        intro: "",
+        color: "warning",
+      });
+      web_types.push({
+        name: "tool",
+        title: "工具网站",
+        intro: "",
+        color: "info",
+      });
+      web_types.push({
+        name: "other",
+        title: "其他网站",
+        intro: "",
+        color: "dark",
+      });
+      web_types.push({
+        name: "genshin",
+        title: "原神相关",
+        intro: "",
+        color: "dark",
+      });
+
+      //网站列表
+      var web_list = new Array();
+      web_list.push({
+        name: "虚空数据库",
+        webs: [{ url: "https://akashadata.com/", tip: "" }],
+        type: "genshin",
+        intro: "统计原神深渊数据的网站",
+      });
+      web_list.push({
+        name: "原神数据库",
+        webs: [{ url: "https://genshin.honeyhunterworld.com/", tip: "" }],
+        type: "genshin",
+        intro: "原神内鬼百科网站",
+      });
+
+      web_list.push({
+        name: "各种镜像网站合集",
+        webs: [{ url: "https://www.library.ac.cn", tip: "" }],
+        type: "collect",
+        intro: "收录了谷歌wiki等镜像",
+      });
+      web_list.push({
+        name: "Baidu开发者搜索",
+        webs: [{ url: "https://kaifa.baidu.com", tip: "" }],
+        type: "collect",
+        intro: "百度开发者搜索页面",
+      });
+      web_list.push({
+        name: "Bing必应",
+        webs: [{ url: "https://cn.bing.com", tip: "" }],
+        type: "collect",
+        intro: "微软旗下搜索引擎，比百度好用",
+      });
+      web_list.push({
+        name: "BlockChain区块链",
+        webs: [{ url: "blockchain.html", tip: "" }],
+        type: "other",
+        intro: "区块链相关网站收集",
+      });
+      web_list.push({
+        name: "Bookstack书栈网",
+        webs: [{ url: "https://www.bookstack.cn", tip: "" }],
+        type: "book",
+        intro: "面向程序员的开源编程书籍和文档学习网站",
+      });
+      web_list.push({
+        name: "Castalia",
+        webs: [{ url: "https://afterwork-design.github.io/castalia", tip: "" }],
+        type: "collect",
+        intro: "超多设计素材聚合网站",
+      });
+      web_list.push({
+        name: "Devicetests",
+        webs: [{ url: "https://devicetests.com", tip: "" }],
+        type: "tool",
+        intro: "在线测试您的电脑鼠标、键盘等设备",
+      });
+      web_list.push({
+        name: "Epub转换",
+        webs: [{ url: "https://epub.to", tip: "" }],
+        type: "tool",
+        intro: "Epub和其他格式相互转换",
+      });
+      web_list.push({
+        name: "Evozi.com",
+        webs: [{ url: "https://apps.evozi.com/apk-downloader", tip: "" }],
+        type: "tool",
+        intro:
+          "无需登录google账户下载安卓app<br>需翻墙，将google play地址比如https://play.google.com/store/apps/details?id=keepass2android.keepass2android_nonet 粘贴即可",
+      });
+      web_list.push({
+        name: "Gitee极速下载",
+        webs: [{ url: "https://gitee.com/mirrors", tip: "" }],
+        type: "mirror",
+        intro: "国内的Git源码站，可以作为GitHub镜像",
+      });
+      web_list.push({
+        name: "GitHub镜像",
+        webs: [{ url: "https://mirror.ghproxy.com", tip: "" }],
+        type: "mirror",
+        intro: "GitHub镜像",
+      });
+      web_list.push({
+        name: "Google镜像",
+        webs: [
+          { url: "https://so.zizaifan.com/html/google.html", tip: "" },
+          { url: "https://mirror.js.org", tip: "" },
+          { url: "https://g.qwq.fan", tip: "一个比较快的Google镜像" },
+        ],
+        type: "mirror",
+        intro: "谷歌镜像网站汇总",
+      });
+      web_list.push({
+        name: "Itellyou",
+        webs: [{ url: "https://msdn.itellyou.cn", tip: "" }],
+        type: "soft",
+        intro: "MSDN I Tellyou - 老牌系统镜像资源下载网站",
+      });
+      web_list.push({
+        name: "JHU新冠地图",
+        webs: [{ url: "https://coronavirus.jhu.edu/map.html", tip: "" }],
+        type: "tool",
+        intro:
+          "Johns Hopkins University 约翰霍普金斯大学的新冠疫情地图，非常权威",
+      });
+      web_list.push({
+        name: "Keyboard Rate Test 键盘测试工具",
+        webs: [
+          { url: "http://blog.seethis.link/scan-rate-estimator", tip: "" },
+          { url: "https://joltfly.com/keyboard-scan-rate-test", tip: "" },
+        ],
+        type: "tool",
+        intro: "两个用于测试键盘延迟/回报率的网站，数据仅供参考",
+      });
+      web_list.push({
+        name: "mefcl",
+        webs: [{ url: "https://www.mefcl.com", tip: "" }],
+        type: "soft",
+        intro: "纯净资源分享",
+      });
+
+      web_list.push({
+        name: "PDF工具",
+        webs: [
+          { url: "https://deftpdf.com", tip: "PDF和其他格式相互转换" },
+          { url: "https://tools.pdf24.org/zh", tip: "在线PDF编辑工具" },
+        ],
+        type: "tool",
+        intro: "",
+      });
+
+      web_list.push({
+        name: "PirateBay",
+        webs: [{ url: "https://thepiratebay10.org", tip: "" }],
+        type: "soft",
+        intro: "海盗湾 - 老牌破解网站",
+      });
+
+      web_list.push({
+        name: "Rarbg镜像",
+        webs: [{ url: "http://rarbgmirror.org", tip: "" }],
+        type: "media",
+        intro: "资源丰富的高清影视下载网站",
+      });
+      web_list.push({
+        name: "Rutracker",
+        webs: [{ url: "https://rutracker.org", tip: "" }],
+        type: "soft",
+        intro: "著名的俄罗斯破解网站",
+      });
+      web_list.push({
+        name: "Sci-hub镜像",
+        webs: [
+          { url: "https://sci-hub.se", tip: "镜像1" },
+          { url: "https://sci-hub.ru", tip: "镜像2" },
+          { url: "https://sci-hub.st", tip: "镜像3" },
+          { url: "https://sci-hub.ren", tip: "镜像4" },
+          { url: "https://www.scihub.net.cn", tip: "国内镜像" },
+        ],
+        type: "book",
+        intro: "国外著名的免费论文下载网站，资源丰富",
+      });
+
+      web_list.push({
+        name: "TechBench by WZT",
+        webs: [
+          { url: "https://tb.rg-adguard.net/public.php?lang=zh-CN", tip: "" },
+        ],
+        type: "soft",
+        intro:
+          "一个很方便强大的系统安装镜像下载网站，选择版本之后直接提供微软官方下载链接",
+      });
+      web_list.push({
+        name: "drive.chen-dong",
+        webs: [{ url: "https://drive.chen-dong.com/", tip: "" }],
+        type: "soft",
+        intro: "一个可以下载很多软件资源的网站",
+      });
+      web_list.push({
+        name: "图欧学习资源库",
+        webs: [{ url: "https://tuostudy.com/", tip: "" }],
+        type: "collect",
+        intro: "非常全的学习资源聚合网站",
+      });
+
+      web_list.push({
+        name: "Wemedia123",
+        webs: [{ url: "http://wemedia123.com", tip: "" }],
+        type: "collect",
+        intro: "自媒体素材导航网 超多的聚合",
+      });
+
+      web_list.push({
+        name: "Wiki镜像",
+        webs: [
+          { url: "https://zh.wikipedia.shutcm.cf/wiki/", tip: "" },
+          { url: "https://en.wiki.hancel.org/wiki/Main_Page", tip: "" },
+          { url: "https://zh.wikimirror.xyz", tip: "" },
+        ],
+        type: "mirror",
+        intro: "维基百科的镜像收集",
+      });
+      web_list.push({
+        name: "Yandex",
+        webs: [{ url: "https://yandex.com", tip: "" }],
+        type: "collect",
+        intro: "俄罗斯搜索引擎，搜某些资料时比百度好用",
+      });
+
+      web_list.push({
+        name: "Z-library",
+        webs: [
+          { url: "https://zh.z-lib.org", tip: "主页" },
+          { url: "https://zh.u1lib.org", tip: "图书页面" },
+        ],
+        type: "book",
+        intro: "号称网上最大的图书下载网站",
+      });
+
+      web_list.push({
+        name: "百度疫情数据报告",
+        webs: [
+          {
+            url: "https://voice.baidu.com/act/newpneumonia/newpneumonia",
+            tip: "",
+          },
+        ],
+        type: "tool",
+        intro: "疫情数据",
+      });
+      web_list.push({
+        name: "此人不存在",
+        webs: [{ url: "https://thispersondoesnotexist.com", tip: "" }],
+        type: "other",
+        intro: "AI生成的人脸",
+      });
+      web_list.push({
+        name: "逗比拯救世界",
+        webs: [{ url: "http://www.dbbqb.com", tip: "" }],
+        type: "other",
+        intro: "表情包网站",
+      });
+
+      web_list.push({
+        name: "纪妖",
+        webs: [{ url: "https://www.cbaigui.com", tip: "" }],
+        type: "other",
+        intro: "收集妖怪的资料",
+      });
+
+      web_list.push({
+        name: "镜像收集",
+        webs: [{ url: "https://segmentfault.com/a/1190000023396995", tip: "" }],
+        type: "mirror",
+        intro:
+          "那些你用得上的镜像网站(包含谷歌、wiki、github、youtube等网站的镜像)",
+      });
+      web_list.push({
+        name: "Chatgpt国内镜像",
+        webs: [{ url: "https://40.gptchinese.app", tip: "" }],
+        type: "mirror",
+        intro: "chatgpt国内官方镜像(应该是吧)",
+      });
+      web_list.push({
+        name: "Chatgpt镜像",
+        webs: [{ url: "https://chat18.aichatos.xyz", tip: "" }],
+        type: "mirror",
+        intro: "国内一个可以免费使用chatgpt的镜像网站",
+      });
+
+      web_list.push({
+        name: "立创开源硬件平台",
+        webs: [{ url: "https://oshwhub.com", tip: "" }],
+        type: "collect",
+        intro: "",
+      });
+      web_list.push({
+        name: "麦豆TV",
+        webs: [{ url: "https://www.mdoutv.com", tip: "" }],
+        type: "media",
+        intro: "主打电视剧的影视网站",
+      });
+      web_list.push({
+        name: "青柠起始页",
+        webs: [{ url: "https://limestart.cn", tip: "" }],
+        type: "collect",
+        intro: "著名起始页网站，界面干净漂亮",
+      });
+      web_list.push({
+        name: "全历史",
+        webs: [{ url: "https://www.allhistory.com", tip: "" }],
+        type: "other",
+        intro: "历史记录网站",
+      });
+      web_list.push({
+        name: "全国水雨情信息",
+        webs: [{ url: "http://xxfb.mwr.cn/slbk", tip: "" }],
+        type: "tool",
+        intro: "收集全国雨水情况",
+      });
+      // https://www.zhihu.com/question/51784897/answer/1461698248  全国水系地图
+      web_list.push({
+        name: "人人影视下载分享",
+        webs: [{ url: "https://yyets.dmesg.app", tip: "" }],
+        type: "media",
+        intro: "人人影视挂掉之前，某位大佬抢救出的数据",
+      });
+      web_list.push({
+        name: "人脸对比网站",
+        webs: [
+          { url: "https://ai.baidu.com/tech/face/compare", tip: "百度" },
+          {
+            url: "https://www.faceplusplus.com.cn/face-comparing",
+            tip: "旷视Face",
+          },
+        ],
+        type: "tool",
+        intro: "两个可以免费上传图片进行人脸对比的网站",
+      });
+      web_list.push({
+        name: "世卫组织新冠地图",
+        webs: [{ url: "https://covid19.who.int", tip: "" }],
+        type: "tool",
+        intro: "新冠疫情地图",
+      });
+
+      web_list.push({
+        name: "唐诗三百首",
+        webs: [{ url: "tangshi.html", tip: "" }],
+        type: "book",
+        intro: "",
+      });
+
+      web_list.push({
+        name: "无用的网站",
+        webs: [{ url: "https://theuselessweb.com", tip: "" }],
+        type: "other",
+        intro: "收集了一些奇奇怪怪的网站",
+      });
+      web_list.push({
+        name: "Shanhe-API - 随机黑丝白丝",
+        webs: [{ url: "http://api.shanhe.kim/", tip: "" }],
+        type: "other",
+        intro:
+          "致力于为用户提供稳定、快速的免费API数据接口服务，服务器采用国内高防，稳定运行。<br><a href='http://shanhe.kim/api/tu/hs.php'>随机黑丝</a><br>\
+  <a href='http://shanhe.kim/api/tu/bs.php'>随机白丝</a><br>",
+      });
+      web_list.push({
+        name: "抓鱼虾",
+        webs: [{ url: "http://zhuayuya.com", tip: "" }],
+        type: "collect",
+        intro: "摸鱼专用网站",
+      });
+      web_list.push({
+        name: "键盘客制化",
+        webs: [{ url: "http://www.keyboard-layout-editor.com/", tip: "" }],
+        type: "tool",
+        intro: "客制化键盘的一些网站",
+      });
+
+      /*
+在线教育
+  网易公开课
+oeasy
+国家中小学网络云平台
+好大学在线
+壹课堂
+大学资源网
+darw space (学画画的)
+Justin guitar (学吉他的)
+
+*/
+
+      // 工具类别
+      //分类方法参考  https://www.onlinedown.net/sort/
+      var soft_types = new Array();
+      soft_types.push({
+        name: "desk",
+        title: "桌面软件",
+        intro: "壁纸 远程 输入法",
+        color: "primary",
+      });
+      soft_types.push({
+        name: "dev",
+        title: "生产力软件",
+        intro: "生产力工具 版本控制 文件比较 ide 开发环境 源码管理 文本编辑",
+        color: "secondary",
+      });
+      //soft_types.push({name:"hard", title:"驱动软件", intro:"", color:"success"});
+      soft_types.push({
+        name: "media",
+        title: "多媒体软件",
+        intro: "音乐 图像 图片 动画 设计",
+        color: "danger",
+      });
+      soft_types.push({
+        name: "net",
+        title: "网络资源",
+        intro: "浏览 上传下载",
+        color: "warning",
+      });
+      soft_types.push({
+        name: "safe",
+        title: "安全软件",
+        intro: "杀毒 防马 监控 加密解密",
+        color: "info",
+      });
+      soft_types.push({
+        name: "sys",
+        title: "系统软件",
+        intro: "压缩解压 磁盘文件管理",
+        color: "dark",
+      });
+
+      var tools = new Array();
+      tools.push({
+        name: "7z",
+        webs: [
+          { url: "https://www.7-zip.org", tip: "英文官网" },
+          { url: "https://sparanoid.com/lab/7z", tip: "中文官网" },
+        ],
+        source: "",
+        type: "net",
+        intro: "7-Zip 是一款拥有极高压缩比的开源压缩软件。",
+      });
+      tools.push({
+        name: "anydesk",
+        webs: [{ url: "https://anydesk.com/zhs", tip: "" }],
+        source: "",
+        type: "desk",
+        intro: "可以让个人用户免费使用的远程桌面软件，功能强大",
+      });
+      tools.push({
+        name: "btResourceSearch 磁力资源搜索助手",
+        webs: [{ url: "http://www.pc936.com/bt", tip: "" }],
+        source: "",
+        type: "net",
+        intro:
+          "全网多渠道磁力资源搜索神器，最新最全的影视资源都能搜索到。软件绿色免安装，无牛氓插件，解压即用",
+      });
+      //tools.push({name : "baidu pan", webs:[{url : "https://pan.baidu.com/", tip :""}], source:"", type:"net", intro:""});
+      //tools.push({name : "beyond compare", webs:[{url : "https://www.scootersoftware.com/", tip :""}], source:"", type:"dev", intro:""});
+      tools.push({
+        name: "Calibre",
+        webs: [{ url: "https://calibre-ebook.com/", tip: "" }],
+        source: "",
+        type: "net",
+        intro: "强大的图书管理软件，支持各种格式的导入和搜索",
+      });
+      tools.push({
+        name: "cpu-z",
+        webs: [{ url: "https://www.cpuid.com/softwares/cpu-z.html", tip: "" }],
+        source: "",
+        type: "sys",
+        intro: "著名的cpu检测工具",
+      });
+      tools.push({
+        name: "everything",
+        webs: [{ url: "https://www.voidtools.com/zh-cn", tip: "" }],
+        source: "",
+        type: "dev",
+        intro: "强大的文件查找工具",
+      });
+      tools.push({
+        name: "emule 电骡",
+        webs: [{ url: "https://www.emule-project.net", tip: "" }],
+        source: "",
+        type: "net",
+        intro: "世界上最大最可靠的点对点文件共享客户端之一，开放源代码。",
+      });
+      tools.push({
+        name: "FastGithub",
+        webs: [
+          { url: "https://github.com/dotnetcore/FastGithub/releases", tip: "" },
+        ],
+        source: "https://github.com/dotnetcore/FastGithub",
+        type: "dev",
+        intro:
+          "github加速神器，解决github打不开、用户头像无法加载、releases无法上传下载、git-clone、git-pull、git-push失败等问题",
+      });
+      tools.push({
+        name: "filezilla",
+        webs: [{ url: "https://filezilla-project.org", tip: "" }],
+        source: "",
+        type: "net",
+        intro: "快速、可信赖的FTP客户端以及服务器端。开放源代码",
+      });
+      tools.push({
+        name: "firefox 火狐浏览器",
+        webs: [{ url: "https://www.mozilla.org/zh-CN/firefox/new", tip: "" }],
+        source: "",
+        type: "net",
+        intro: "先进、优秀且免费开源的老牌网络浏览器",
+      });
+      tools.push({
+        name: "foobar",
+        webs: [{ url: "https://www.foobar2000.org", tip: "" }],
+        source: "",
+        type: "media",
+        intro: "世界顶级的基于Windows 平台的老牌专业数字音频播放器",
+      });
+      tools.push({
+        name: "git",
+        webs: [{ url: "https://git-scm.com", tip: "" }],
+        source: "",
+        type: "dev",
+        intro: "开源的版本控制软件，功能强大",
+      });
+      tools.push({
+        name: "gpu-z",
+        webs: [{ url: "https://www.techpowerup.com/gpuz", tip: "" }],
+        source: "",
+        type: "sys",
+        intro: "著名的显卡检测工具",
+      });
+      tools.push({
+        name: "huorong 火绒",
+        webs: [{ url: "https://www.huorong.cn", tip: "" }],
+        source: "",
+        type: "safe",
+        intro: "杀防管控一体的安全软件，不流氓，省资源",
+      });
+      tools.push({
+        name: "keepass",
+        webs: [{ url: "https://keepass.info", tip: "" }],
+        source: "",
+        type: "safe",
+        intro: "免费、小巧、绿色且开源的密码管理工具，多年来一直深受大众的好评",
+      });
+      tools.push({
+        name: "listen1",
+        webs: [{ url: "https://listen1.github.io/listen1", tip: "" }],
+        source: "https://github.com/listen1",
+        type: "media",
+        intro:
+          "开源的音乐播放器，搜索和播放来自网易云音乐，虾米，QQ音乐，酷狗音乐，酷我音乐，Bilibili，咪咕音乐网站的歌曲，让你的曲库更全面",
+      });
+      tools.push({
+        name: "MobaXterm",
+        webs: [{ url: "https://mobaxterm.mobatek.net", tip: "" }],
+        source: "",
+        type: "dev",
+        intro: "强大好用的远程终端登录利器，个人用户可以免费使用",
+      });
+      tools.push({
+        name: "motrix",
+        webs: [{ url: "https://motrix.app", tip: "" }],
+        source: "https://github.com/agalwood/Motrix",
+        type: "net",
+        intro: "免费开源的全能下载工具，支持HTTP,FTP,BT,磁力链接等资源",
+      });
+      tools.push({
+        name: "musictool",
+        webs: [{ url: "https://www.yijingying.com/html/musictools", tip: "" }],
+        source: "",
+        type: "media",
+        intro:
+          "免费的聚合式音乐播放器，能够轻松搜索到网上的各种格式音乐资源并下载或播放",
+      });
+      //tools.push({name : "mybase", webs:[{url : "http://www.wjjsoft.com/mybase_cn.html", tip :""}], source:"", type:"dev", intro:""});
+      //tools.push({name : "navicat", webs:[{url : "https://www.navicat.com.cn/", tip :""}], source:"", type:"dev", intro:""});
+      tools.push({
+        name: "neat-reader",
+        webs: [
+          { url: "http://www.neat-reader.com/downloads/converter", tip: "" },
+        ],
+        source: "",
+        type: "media",
+        intro: "电子书转换工具，支持各种常见电子书格式",
+      });
+      //tools.push({name : "notion", webs:[{url : "https://www.notion.so/", tip :""}], source:"", type:"dev", intro:""});
+      //tools.push({name : "office", webs:[{url : "https://www.office.com/", tip :""}], source:"", type:"dev", intro:""});
+      //tools.push({name : "photoshop", webs:[{url : "https://www.adobe.com/products/photoshop.html?promoid=RBS7NL7F&mv=other", tip :""}], source:"", type:"media", intro:""});
+      tools.push({
+        name: "potplayer",
+        webs: [{ url: "https://potplayer.daum.net", tip: "" }],
+        source: "",
+        type: "media",
+        intro:
+          "Windows 平台上功能最强大的多媒体播放器之一，无广告，不流氓，界面简洁，纯粹为播放而生",
+      });
+      tools.push({
+        name: "quicker",
+        webs: [{ url: "https://getquicker.net", tip: "" }],
+        source: "",
+        type: "dev",
+        intro: "强大易用的动作捕捉、脚本编写工具，大大提高你的工作效率",
+      });
+      tools.push({
+        name: "siyuan 思源笔记",
+        webs: [{ url: "https://b3log.org/siyuan", tip: "" }],
+        source: "",
+        type: "dev",
+        intro:
+          "本地优先的个人知识管理系统，支持完全离线使用，同时也支持端到端加密同步，功能强大，免费使用，收费后可以开启云同步功能",
+      });
+      tools.push({
+        name: "steam++",
+        webs: [{ url: "http://steampp.net", tip: "" }],
+        source: "",
+        type: "net",
+        intro:
+          "使Steam 社区、 Github 、谷歌验证码等国内难以访问的网页正常访问。功能类似 steamcommunit302 ，使用 Titanium-Web-Proxy 开源项目进行本地反代。",
+      });
+      //tools.push({name : "secureCRT", webs:[{url : "https://www.vandyke.com/products/securecrt/", tip :""}], source:"", type:"dev", intro:""});
+      tools.push({
+        name: "sublime text",
+        webs: [{ url: "http://www.sublimetext.com/3", tip: "" }],
+        source: "",
+        type: "dev",
+        intro: "流行的代码编辑器软件，功能强大，轻巧快速，个人用户可以免费试用",
+      });
+      tools.push({
+        name: "tbtool 图吧工具箱",
+        webs: [{ url: "http://www.tbtool.cn", tip: "" }],
+        source: "",
+        type: "dev",
+        intro:
+          "开源、免费、绿色、纯净的硬件检测工具合集，专为所有计算机硬件极客、DIY爱好者、各路大神及小白制作",
+      });
+      tools.push({
+        name: "Textify",
+        webs: [{ url: "https://ramensoftware.com/textify", tip: "" }],
+        source: "",
+        type: "dev",
+        intro: "可以将屏幕上无法点取的文本获取并复制的开源工具",
+      });
+      tools.push({
+        name: "tortoiseGit",
+        webs: [{ url: "https://tortoisegit.org/download", tip: "" }],
+        source: "",
+        type: "dev",
+        intro: "开源的Git交互接口，让你更轻松地使用Git",
+      });
+      tools.push({
+        name: "vscode(visual studio code)",
+        webs: [{ url: "https://code.visualstudio.com", tip: "" }],
+        source: "",
+        type: "dev",
+        intro: "微软推出的免费跨平台源代码编辑器，功能强大，扩展性极强",
+      });
+      tools.push({
+        name: "Wepe 微PE工具箱",
+        webs: [{ url: "https://www.wepe.com.cn", tip: "" }],
+        source: "",
+        type: "sys",
+        intro:
+          "启动U盘制作工具，功能强大体积小，免费绿色，无插件无捆绑，不流氓",
+      });
+      tools.push({
+        name: "Win10 21H2官方镜像下载",
+        webs: [{ url: "https://www.bilibili.com/read/cv14810035", tip: "" }],
+        source: "",
+        type: "sys",
+        intro: "微软官方镜像BT下载链接",
+      });
+      tools.push({
+        name: "win10微软工具",
+        webs: [
+          {
+            url: "https://www.microsoft.com/zh-cn/software-download/windows10",
+            tip: "",
+          },
+        ],
+        source: "",
+        type: "sys",
+        intro:
+          "微软官方提供的Windows镜像下载和启动盘制作工具，制作出的U盘用于安装系统，如只想下载镜像，请在工具中选择版本和保存为ISO即可，但只能下载消费者版",
+      });
+
+      tools.push({
+        name: "手心输入法",
+        webs: [{ url: "http://www.xinshuru.com/index.html?p=win", tip: "" }],
+        source: "",
+        type: "desk",
+        intro: "智能、高效、无广告骚扰、只专注于输入本质的纯粹输入法。",
+      });
+      tools.push({
+        name: "硕鼠",
+        webs: [{ url: "https://www.flvcd.com", tip: "" }],
+        source: "",
+        type: "net",
+        intro: "网页视频下载器，输入视频网址，即可通过软件下载视频",
+      });
+      tools.push({
+        name: "夜神模拟器",
+        webs: [{ url: "https://www.yeshen.com", tip: "" }],
+        source: "",
+        type: "sys",
+        intro: "好用的安卓模拟器，电脑玩手游的神兵利器",
+      });
+      tools.push({
+        name: "HEU KMS Activator全能系统数字许可激活工具",
+        webs: [
+          {
+            url: "https://github.com/zbezj/HEU_KMS_Activator/releases",
+            tip: "",
+          },
+        ],
+        source: "",
+        type: "sys",
+        intro:
+          '一位叫知彼而知己的大神所开发的KMS激活工具，最新版本新增加了OEM激活，增加对Vista/Win7/Server 2008 (R2)/2012 (R2) OEM的永久激活(支持Legacy/UEFI BIOS)，此工具可以完美的激活Windows以及Office的VL版本，无需联网即可一键激活<br>\
+  具体介绍可以看<a href="https://www.bilibili.com/read/cv17881203">【电脑软件】Windows激活工具—HEU KMS Activator全能系统数字许可激活工具</a>',
+      });
+      /*
+steam
+unity
+qq
+visual studio
+weixin
+wps
+jd读书
+nsis
+android
+录屏 截图
+houdini
+vmware
+sourceinsight
+phpstorm
+https://github.com/purocean/yn  markdown 编辑器
+*/
+
+      const app = Vue.createApp({
+        data() {
+          return {
+            //tools : tools,
+            page_name: "web",
+
+            web_types: web_types,
+            search_web: "",
+            select_web_type: "all",
+
+            b_sort_text: "A-Z",
+            soft_types: soft_types,
+            search_soft: "",
+            select_soft_type: "all",
+
+            skill_types: skill_types,
+            search_skill: "",
+            select_skill_type: "all",
+
+            m_about: false,
+          };
+        },
+
+        computed: {
+          soft_list: function () {
+            tmp_list = new Array();
+            //var search = this.search;
+            for (i in tools) {
+              has_insert = 0;
+              if (
+                tools[i].name
+                  .toLowerCase()
+                  .indexOf(this.search_soft.toLowerCase()) > -1
+              ) {
+                if (
+                  tools[i].type == this.select_soft_type ||
+                  this.select_soft_type == "all"
+                ) {
+                  tmp_list.push(tools[i]);
+                  has_insert = 1;
+                }
+              }
+
+              if (
+                tools[i].intro
+                  .toLowerCase()
+                  .indexOf(this.search_soft.toLowerCase()) > -1
+              ) {
+                if (
+                  tools[i].type == this.select_soft_type ||
+                  this.select_soft_type == "all"
+                ) {
+                  if (has_insert == 0) {
+                    tmp_list.push(tools[i]);
+                  }
+                }
+              }
+            }
+
+            if (this.b_sort_text == "A-Z") {
+              return tmp_list;
+            } else {
+              return tmp_list.reverse();
+            }
+          },
+
+          web_list: function () {
+            tmp_list = new Array();
+            //var search = this.search;
+            for (i in web_list) {
+              has_insert = 0;
+              if (
+                web_list[i].name
+                  .toLowerCase()
+                  .indexOf(this.search_web.toLowerCase()) > -1
+              ) {
+                if (
+                  web_list[i].type == this.select_web_type ||
+                  this.select_web_type == "all"
+                ) {
+                  tmp_list.push(web_list[i]);
+                  has_insert = 1;
+                }
+              }
+
+              if (
+                web_list[i].intro
+                  .toLowerCase()
+                  .indexOf(this.search_web.toLowerCase()) > -1
+              ) {
+                if (
+                  web_list[i].type == this.select_web_type ||
+                  this.select_web_type == "all"
+                ) {
+                  if (has_insert == 0) {
+                    tmp_list.push(web_list[i]);
+                  }
+                }
+              }
+            }
+
+            return tmp_list;
+          },
+
+          skill_list: function () {
+            tmp_list = new Array();
+            //var search = this.search;
+            for (i in skill_list) {
+              has_insert = 0;
+              if (
+                skill_list[i].name
+                  .toLowerCase()
+                  .indexOf(this.search_skill.toLowerCase()) > -1
+              ) {
+                if (
+                  skill_list[i].type == this.select_skill_type ||
+                  this.select_skill_type == "all"
+                ) {
+                  tmp_list.push(skill_list[i]);
+                  has_insert = 1;
+                }
+              }
+
+              //去除掉html标签再查询，以免查到垃圾结果
+              if (
+                skill_list[i].content
+                  .replace(/<[^>]+>/g, "")
+                  .toLowerCase()
+                  .indexOf(this.search_skill.toLowerCase()) > -1
+              ) {
+                if (
+                  skill_list[i].type == this.select_skill_type ||
+                  this.select_skill_type == "all"
+                ) {
+                  if (has_insert == 0) {
+                    tmp_list.push(skill_list[i]);
+                  }
+                }
+              }
+            }
+
+            return tmp_list;
+          },
+        },
+
+        // 在 `methods` 对象中定义方法
+        methods: {
+          select_soft: function (type) {
+            this.select_soft_type = type;
+          },
+
+          select_web: function (type) {
+            this.select_web_type = type;
+          },
+
+          select_skill: function (type) {
+            this.select_skill_type = type;
+          },
+
+          show_page: function (page) {
+            this.page_name = page;
+          },
+
+          getSoftType: function (type_name) {
+            for (i in soft_types) {
+              if (soft_types[i].name === type_name) {
+                return soft_types[i].title;
+              }
+            }
+          },
+          getSoftTypeColor: function (type_name) {
+            for (i in soft_types) {
+              if (soft_types[i].name === type_name) {
+                return soft_types[i].color;
+              }
+            }
+            return "primary";
+          },
+
+          getWebType: function (type_name) {
+            for (i in web_types) {
+              if (web_types[i].name === type_name) {
+                return web_types[i].title;
+              }
+            }
+          },
+          getWebTypeColor: function (type_name) {
+            for (i in web_types) {
+              if (web_types[i].name === type_name) {
+                return web_types[i].color;
+              }
+            }
+            return "primary";
+          },
+
+          getSkillType: function (type_name) {
+            for (i in skill_types) {
+              if (skill_types[i].name === type_name) {
+                return skill_types[i].title;
+              }
+            }
+          },
+          getSkillTypeColor: function (type_name) {
+            for (i in skill_types) {
+              if (skill_types[i].name === type_name) {
+                return skill_types[i].color;
+              }
+            }
+            return "primary";
+          },
+
+          goto_item: function (e) {
+            if (e.target.nodeName === "A") {
+              // 获取触发事件对象的属性
+              var page = e.target.getAttribute("data-page");
+              var type = e.target.getAttribute("data-type");
+              var name = e.target.getAttribute("data-name");
+
+              this.page_name = page;
+              if (page == "web") {
+                if (type != "") {
+                  this.select_web_type = type;
+                } else {
+                  this.select_web_type = "all";
+                }
+                this.search_web = name;
+              } else if (page == "soft") {
+                if (type != "") {
+                  this.select_soft_type = type;
+                } else {
+                  this.select_soft_type = "all";
+                }
+
+                this.search_soft = name;
+              } else if (page == "skill") {
+                if (type != "") {
+                  this.select_skill_type = type;
+                } else {
+                  this.select_skill_type = "all";
+                }
+
+                this.search_skill = name;
+              }
+            }
+          },
+
+          sort: function (event) {
+            if (this.b_sort_text == "A-Z") {
+              this.b_sort_text = "Z-A";
+            } else {
+              this.b_sort_text = "A-Z";
+            }
+          },
+        },
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>
